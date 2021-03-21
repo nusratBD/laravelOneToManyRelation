@@ -35,28 +35,17 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     $image = $request->file('image')->store('public');
 
-    //     $input_data = [
-
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-
-    //         'image' => $image
-    //     ];
-    //     // $input_data['student_id'] = auth()->student()->id;
-
-
-    //     Student::create($input_data);
-
-
-
-    //     return redirect('/')->with('Student Registration Successful');
-    // }
-    protected function test(Request $data)
+    protected function store(Request $data)
     {
+        $data->validate([
+            'name' => 'required',
+            'email' =>  'required',
+            'image' =>  'required',
+            'phone1' => 'required|regex:/(01)[0-9]{9}/',
+            'phone2' => 'required|regex:/(01)[0-9]{9}/'
+
+        ]);
         $image = $data->file('image')->store('public');
         Student::create([
 
