@@ -42,8 +42,8 @@ class StudentController extends Controller
             'name' => 'required',
             'email' =>  'required',
             'image' =>  'required',
-            'phone1' => 'required|regex:/(01)[0-9]{9}/',
-            'phone2' => 'required|regex:/(01)[0-9]{9}/'
+            'phone1' => 'required|regex:/(01)[1356789][0-9]{8}/',
+            'phone2' => 'required|regex:/(01)[1356789][0-9]{8}/'
 
         ]);
         $image = $data->file('image')->store('public');
