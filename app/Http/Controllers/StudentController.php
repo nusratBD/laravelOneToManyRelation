@@ -113,6 +113,11 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $img = Student::where('id', $id)->first();
+        $img_path = $img->image;
+        unlink($img_path);//delete photo from project folder
+        Student::where('id', $id)->delete();
+        Contact::where('student_id', $id)->delete();
+
     }
 }
